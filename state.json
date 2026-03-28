@@ -1,0 +1,15 @@
+import json
+import os
+
+STATE_FILE = "bot_state.json"
+
+def load_state():
+    if os.path.exists(STATE_FILE):
+        with open(STATE_FILE, 'r') as f:
+            return json.load(f)
+    # Default if no file exists
+    return {"current_lang": "en", "current_index": 0}
+
+def save_state(lang, index):
+    with open(STATE_FILE, 'w') as f:
+        json.dump({"current_lang": lang, "current_index": index}, f)
